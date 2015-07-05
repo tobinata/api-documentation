@@ -1,21 +1,16 @@
 # Whetstone API
 
-### Basic Concepts 
-Just a note before we start: the Whetstone API is intended to be used by developers. Most of the documentation reflects that. In this introduction, we've tried to keep things simple enough that even a non-tech person can understand what's happening and get a sense for how an API works. 
+### Introduction
 
-When a typical user accesses Whetstone data, authentication is performed in the browser using a username and password or through a single-sign-on method like Google or Okta.  When that happens, our server and the user's browser communicate and set a "cookie" to keep the user authenticated for the rest of their browsing session.  When accessing the API, we use a similar process but instead of cookies, we use secure tokens.  
+The first step to accessing the API is to get your API key.  After logging into Whetstone, visit the settings page (click your name at the top right and choose "My Settings").  You should see a section called "Developer Options" section.  (If you don't, get in touch.  You may not have the correct permissions set up.)  
 
-The first step to accessing the API is actually to login to Whetstone through a browser.  Click your name at the top right and choose "My Settings."  You should see a "Developer Options" section under My Basic Info.  If you don't, it's probably because you aren't set up as an admin or we haven't enabled API access for your instance.  If that's the case, get in touch and we'll get everything set up.  
+By default, your API key is hidden.  Click, "Show my API key" to reveal an alphanumeric hash key.  That's your personal key to access Whetstone data.  You can also generate a new API key by clicking "Generate New API Key." That invalidates the old key and creates a new one.  
 
-If you do have the Developer options section, great.  This is where you get your API key.  By default, it's hidden.  If you click, "Show my API key," an alphanumeric hash will appear.  That's your personal key to access Whetstone data.  If it's ever compromised or if it's part of your security practices, you can generate a new API key by clicking "Generate New API Key." That invalidates the old key and creates a new one.  If we detect strange behavior on our end, we can also invalidate keys. 
-
-Now that you have the key, you'll need to write a script to access our authentication endpoint -- which is equivalent to a login page -- and receive a temporary token that, with the key, can be used to access data.  In this example, we'll use cURL which is a Unix command line tool that's also been ported to Windows and other platforms.  It's just making HTTP requests so any similar software will work.  
-
-OK. Open your command prompt and type, replacing the all caps text with your API key and your instance name:
+Now that you have an API key, you can make an HTTP POST request with your key to our authentication endpoint to get a temporary access token.  If you're using cURL, you'd run this command:
 
     curl -s --data "apikey=YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/api
 
-If your everything worked, you should receive a response like this:
+If everything checks out, you should receive a JSON response that looks like this:
 
     {
        "token":"YOUR_ACCESS_TOKEN",
@@ -27,33 +22,33 @@ If your everything worked, you should receive a response like this:
        }
      }
 
-The main information thing to worry about is the token. That's what lets you access the data.  The other information is likely not of much use to your script but it's there to let you know everything worked. The token is good for 7 days. We send back the expiration in a unix timestamp and a human-friendly version. We also send back the user whose token was used in case you want to use that info for logging purposes.
+Using the key and token, you can make data requests.  Let's get the list of schools.  The endpoint for schools data is:
 
-Now that we're authenticated, we can actually request data.  Again, using cURL, we make an HTTP GET request to an endpoint, in this case the schools endpoint.
+    http://YOUR_INSTANCE.whetstoneeducation.com/api/v1/schools
+    
+To access data, you need to make an HTTP GET request with the *access-token* and *key* included in the headers. Using cURL, it would look like this.
 
     curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools;
 
-If everything checks out and you copied everything correctly, you should get JSON data containing the list of schools in the Whetstone database.  You can also append a query string that allows you to filter data like this:
+If everything checks out, you'll get back all the schools data in Whetstone's database in JSON format.  If you want to get a single record, you can append a query string to your request. In cURL, it would look like this:
 
     curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools?name=Bel+Air+Academy;
 
-In that example, you'd request only the record where the name of the school is Bel Air Academy.  (Typically, you'd use an _id field for that.  It's mostly for joining data together in your script.)
-
-Now that you've seen how the process works, take a look at our example scripts folder. We have a bash script for Mac, Linux, and Unix users and a PowerShell script for Windows users.  (Make sure you can run PowerShell scripts on your machine. By default, that's disabled.)  We're also happy to provide example scripts in other languages if we know them. If you've written one in a language we don't know, you can add it in through a GitHub pull request or, if you don't use Git, by sending it to someone at Whetstone. If you see any errors in this documentation, you submit corrections in the same way.
+In that example, you'd request only the record where the name of the school is equal to Bel Air Academy.  You can use any data field in the query string. (Typically, you'll use an id number to get a single record.)
 
 ### Data Available
 We currently have the following endpoints available:
 
-* **School Data**: /api/v1/schools
-* **User Data**: /api/v1/users
-* **Action Step and Goal Data**: /api/v1/assignments
-* **Observation Data**: /api/v1/observations
-* **Quick Feedback Data**: /api/v1/informals
-* **Course Names**: /api/v1/courses
-* **Tag Names**: /api/v1/tags
+**[School Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/schools.json)**: /api/v1/schools
+**[User Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/users.json)**: /api/v1/users
+**[Action Step and Goal Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/assignments.json)**: /api/v1/assignments
+**[Observation Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/observations.json)**: /api/v1/observations
+**[Quick Feedback Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/informals.json)**: /api/v1/informals
+**[Course Names](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/courses.json)**: /api/v1/courses
+**[Tag Names](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/tags.json)**: /api/v1/tags
 
-Each endpoint can also take queries.  For instance, if you want to find a user by their _id, you can make an HTTP GET request to 
+If you click on the name, you'll see an example of what data is returned.  Again, each endpoint can also take query strings so if you wanted to find a single user record, you could make an HTTP GET request to: 
 
     /api/v1/users?_id=000000000000000000000000
 
-To see example data, check out the ExampleData folder. 
+Examples of what kind of data you can expect are in the [ExampleData](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/) folder.  We've also got [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. 
