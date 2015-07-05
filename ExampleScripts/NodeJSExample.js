@@ -1,18 +1,46 @@
-var sys = require('sys')
-  , exec = require('child_process').exec
-;
+#!/usr/bin/env node
+var request = require('request');
 
 var apikey = ""; // YOUR API KEY GOES HERE
-var url = "http://instance.whetstoneeducation.com";
-var endpoint="/api/v1/schools"
+var url = "http://instance.whetstoneeducation.com"; // CHANGE TO YOUR URL
+var endpoint="/api/v1/schools" // CHANGE THIS TO THE ENDPOINT YOU WANT TO ACCESS
 
-exec('curl -s --data "apikey='+apikey+'" '+url+'/auth/api', function(err, response) {
-  var tokendata = JSON.parse(response);
-  var cmd = 'curl -H "content-type:application/json" -H "x-access-token:'+tokendata.token+'" -H "x-key:'+apikey+'" '+url+endpoint;
-  console.log(cmd)
-  exec(cmd, function(err, response) {
-    var data = JSON.parse(response);
-    console.log(data);
-  })
+//initial request to authentication server
+var options = {
+  url: url+'/auth/api', 
+  method: "post",
+  form: {
+    apikey: apikey
+  }
+}
+
+//make the request
+request(options, function(err, res, body) {
+
+  //parse the body into an object
+  var response = JSON.parse(body);
+
+  //get the token
+  var token = response.token;
+
+  if (token) {
+
+    //request data
+    var options = {
+      url: url+endpoint,
+      method: "get", 
+      headers: {
+        'x-access-token': token,
+        'x-key':apikey
+      }
+    }
+    request(options, function(err, res, body) {
+      
+      //parse the data into an object
+      var data = JSON.parse(body);
+
+      //output the data to the console
+      console.log(data)
+    })
+  }
 })
-
