@@ -43,13 +43,14 @@ Now that you've seen how the process works, take a look at our example scripts f
 
 ### Data Available
 We currently have the following endpoints available:
-School Data: /api/v1/schools
-User Data: /api/v1/users
-Action Step and Goal Data: /api/v1/assignments
-Observation Data: /api/v1/observations
-Quick Feedback Data: /api/v1/informals
-Course Names: /api/v1/courses
-Tag Names: /api/v1/tags
+
+* **School Data**: /api/v1/schools
+* **User Data**: /api/v1/users
+* **Action Step and Goal Data**: /api/v1/assignments
+* **Observation Data**: /api/v1/observations
+* **Quick Feedback Data**: /api/v1/informals
+* **Course Names**: /api/v1/courses
+* **Tag Names**: /api/v1/tags
 
 Each endpoint can also take queries.  For instance, if you want to find a user by their _id, you can make an HTTP GET request to 
 ````
