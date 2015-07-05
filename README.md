@@ -40,11 +40,17 @@ In that example, you'd request only the record where the name of the school is e
 We currently have the following endpoints available:
 
 **[School Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/schools.json)**: /api/v1/schools
+
 **[User Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/users.json)**: /api/v1/users
+
 **[Action Step and Goal Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/assignments.json)**: /api/v1/assignments
+
 **[Observation Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/observations.json)**: /api/v1/observations
+
 **[Quick Feedback Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/informals.json)**: /api/v1/informals
+
 **[Course Names](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/courses.json)**: /api/v1/courses
+
 **[Tag Names](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/tags.json)**: /api/v1/tags
 
 If you click on the name, you'll see an example of what data is returned.  Again, each endpoint can also take query strings so if you wanted to find a single user record, you could make an HTTP GET request to: 
