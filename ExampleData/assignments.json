@@ -1,0 +1,32 @@
+{
+  "_id": "000000000000000000000000",
+  "creator": {
+    "_id": "000000000000000000000000",
+    "name": "Example Coach"
+  },
+  "user": {
+    "_id": "000000000000000000000000",
+    "name": "Example Teacher"
+  },
+  "name": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus vestibulum ullamcorper tortor. Aenean quis lacus quis neque adipiscing ultricies. Pellentesque tincidunt ligula vitae nibh ornare pharetra. Proin dignissim tortor. Donec et ipsum nec tellus gravida tempor. Aliquam ullamcorper purus vel felis. Praesent faucibus. Curabitur porta. Nulla in lorem quis mi lacinia fringilla. Integer adipiscing mi quis felis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque sagittis ante in arcu. Sed libero enim, venenatis sit amet, vestibulum at, porttitor id, neque. Vestibulum ornare semper erat. Sed tincidunt nibh et massa. Cras sed diam. Quisque blandit enim.",
+  "type": "actionStep",
+  "parent": "000000000000000000000000",
+  "observation": "000000000000000000000000",
+  "progression": [
+    {
+      "percent": 100,
+      "creator": "000000000000000000000000",
+      "_id": "000000000000000000000000",
+      "date": "2015-03-19T16:40:20.168Z"
+    }
+  ],
+  "rows": [
+    "000000000000000000000000",
+    "000000000000000000000000"
+  ],
+  "tags": [
+    "000000000000000000000000",
+    "000000000000000000000000"
+  ],
+  "created": "2015-03-18T21:59:39.400Z"
+}

@@ -40,3 +40,19 @@ curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H
 In that example, you'd request only the record where the name of the school is Bel Air Academy.  (Typically, you'd use an _id field for that.  It's mostly for joining data together in your script.)
 
 Now that you've seen how the process works, take a look at our example scripts folder. We have a bash script for Mac, Linux, and Unix users and a PowerShell script for Windows users.  (Make sure you can run PowerShell scripts on your machine. By default, that's disabled.)  We're also happy to provide example scripts in other languages if we know them. If you've written one in a language we don't know, you can add it in through a GitHub pull request or, if you don't use Git, by sending it to someone at Whetstone. If you see any errors in this documentation, you submit corrections in the same way.
+
+### Data Available
+We currently have the following endpoints available:
+School Data: /api/v1/schools
+User Data: /api/v1/users
+Action Step and Goal Data: /api/v1/assignments
+Observation Data: /api/v1/observations
+Quick Feedback Data: /api/v1/informals
+Course Names: /api/v1/courses
+Tag Names: /api/v1/tags
+
+Each endpoint can also take queries.  For instance, if you want to find a user by their _id, you can make an HTTP GET request to 
+````
+/api/v1/users?_id=000000000000000000000000
+````
+To see example data, check out the ExampleData folder. 

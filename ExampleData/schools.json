@@ -1,0 +1,57 @@
+{
+  "_id": "000000000000000000000000",
+  "name": "Example School",
+  "observationGroups": [
+    {
+      "_id": "000000000000000000000000",
+      "name": "Example Group 1",
+      "observees": [
+        "000000000000000000000000",
+        "000000000000000000000000",
+        "000000000000000000000000",
+        "000000000000000000000000"
+      ],
+      "observers": [
+        "000000000000000000000000",
+        "000000000000000000000000"
+      ]
+    },
+    
+    },
+    {
+      "_id": "000000000000000000000000",
+      "name": "Example Group 2",
+      "observees": [
+        "000000000000000000000000",
+        "000000000000000000000000",
+        "000000000000000000000000",
+        "000000000000000000000000"
+      ],
+      "observers": [
+        "000000000000000000000000"
+      ]
+    }
+  ],
+  "admins": [
+    {
+      "_id": "000000000000000000000000",
+      "name": "Example Principal"
+    }
+  ],
+  "assistantAdmins": [
+    {
+      "_id": "000000000000000000000000",
+      "name": "Example Assistant Principal"
+    }
+  ],
+  "abbreviation": "ES",
+  "address": "123 Test Street",
+  "city": "Test City",
+  "highGrade": "12",
+  "lowGrade": "K",
+  "phone": "000-000-0000",
+  "principal": "Example Principal",
+  "region": "West",
+  "state": "Louisiana",
+  "zip": "70119"
+}
