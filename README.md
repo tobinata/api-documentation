@@ -1,5 +1,8 @@
 # Whetstone API
 
+### Prerequisites
+In order to access the API, you need a Whetstone account at the admin level and also to have requested that the API be enabled. If you do not have either of those pre-requesites, contact your network admin.
+
 ### Introduction
 
 The first step to accessing the API is to get your API key.  After logging into Whetstone, visit the settings page (click your name at the top right and choose "My Settings").  You should see a section called "Developer Options" section.  (If you don't, get in touch.  You may not have the correct permissions set up.)  
