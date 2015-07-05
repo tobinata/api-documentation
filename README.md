@@ -6,7 +6,7 @@ The first step to accessing the API is to get your API key.  After logging into 
 
 By default, your API key is hidden.  Click, "Show my API key" to reveal an alphanumeric hash key.  That's your personal key to access Whetstone data.  You can also generate a new API key by clicking "Generate New API Key." That invalidates the old key and creates a new one.  
 
-Now that you have an API key, you can make an HTTP POST request with your key to our authentication endpoint to get a temporary access token.  If you're using cURL, you'd run this command:
+Now that you have an API key, you can make an HTTP POST request with your key to our authentication endpoint to get a temporary access token.  We've got a few  [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) available to get you started but If you're using cURL, you can run this command:
 
     curl -s --data "apikey=YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/api
 
@@ -57,4 +57,4 @@ If you click on the name, you'll see an example of what data is returned.  Again
 
     /api/v1/users?_id=000000000000000000000000
 
-Examples of what kind of data you can expect are in the [ExampleData](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/) folder.  We've also got [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. 
+Examples of what kind of data you can expect are in the [ExampleData](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/) folder.  We've also got [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We've provided a cross-platform Node.js script, a Windows PowerShell script, and a bash script that should run on Mac and Linux. If you have an example script in another language, please make a pull request or get in touch. The more examples we have, the better.
