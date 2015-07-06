@@ -1,6 +1,6 @@
 # Whetstone API
 
-### Prerequisites
+### Pre-requisites
 In order to access the API, you need a Whetstone account at the admin level and also to have requested that the API be enabled. If you do not have either of those pre-requesites, contact your network admin.
 
 ### Introduction
@@ -37,7 +37,7 @@ If everything checks out, you'll get back all the schools data in Whetstone's da
 
     curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools?name=Bel+Air+Academy;
 
-In that example, you'd request only the record where the name of the school is equal to Bel Air Academy.  You can use any data field in the query string. (Typically, you'll use an id number to get a single record.)
+In that example, you would request only the record where the name of the school is equal to Bel Air Academy.  You can use any data field in the query string. (Typically, you'll use an id number to get a single record.)
 
 ### Data Available
 We currently have the following endpoints available:
@@ -60,4 +60,4 @@ If you click on the name, you'll see an example of what data is returned.  Again
 
     /api/v1/users?_id=000000000000000000000000
 
-Examples of what kind of data you can expect are in the [ExampleData](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/) folder.  We've also got [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We've provided a cross-platform Node.js script, a Windows PowerShell script, and a bash script that should run on Mac and Linux. If you have an example script in another language, please make a pull request or get in touch. The more examples we have, the better.
+Examples of what kind of data you can expect are in the [ExampleData](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/) folder.  We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a cross-platform Node.js script, a Windows PowerShell script, and a bash script that should run on Mac and Linux. If you have an example script in another language, please make a pull request. The more examples we have, the more useful this API will be.  And if you develop any cool tools using this API, please consider open-sourcing it so other schools can benefit. 
