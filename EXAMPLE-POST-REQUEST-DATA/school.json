@@ -1,0 +1,13 @@
+{
+  "name": "Example School",
+  "abbreviation": "ES",
+  "address": "123 Example Street",
+  "city": "Example City",
+  "highGrade": "12",
+  "lowGrade": "K",
+  "phone": "000-000-0000",
+  "principal": "Example Principal",
+  "region": "Example Region",
+  "state": "Louisiana",
+  "zip": "70119"
+}

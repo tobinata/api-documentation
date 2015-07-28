@@ -1,0 +1,13 @@
+{
+  "name": "Example Teacher",
+  "email": "exampleteacher@whetstoneeducation.org",
+  "coach": "000000000000000000000000",
+  "additionalEmails": [
+    "example@gmail.com"
+  ],
+  "defaultInformation": {
+    "school": "000000000000000000000000",
+    "grade": 10,
+    "course": "000000000000000000000000"
+  }
+}

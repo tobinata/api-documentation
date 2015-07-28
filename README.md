@@ -25,7 +25,8 @@ If everything checks out, you should receive a JSON response that looks like thi
        }
      }
 
-Using the key and token, you can make data requests.  Let's get the list of schools.  The endpoint for schools data is:
+###Getting Data from Whetstone - HTTP GET
+Using the key and token, you can make GET requests to pull data.  Let's get the list of schools as an example.  The endpoint for schools data is:
 
     http://YOUR_INSTANCE.whetstoneeducation.com/api/v1/schools
     
@@ -33,31 +34,77 @@ To access data, you need to make an HTTP GET request with the *access-token* and
 
     curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools;
 
-If everything checks out, you'll get back all the schools data in Whetstone's database in JSON format.  If you want to get a single record, you can append a query string to your request. In cURL, it would look like this:
+If everything checks out, you'll get back all the schools data in Whetstone's database in JSON format.  
+
+####Querying Data
+If you want to query the database, you can append a query string to your endpoint. In cURL, it would look like this:
 
     curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools?name=Bel+Air+Academy;
 
-In that example, you would request only the record where the name of the school is equal to Bel Air Academy.  You can use any data field in the query string. (Typically, you'll use an id number to get a single record.)
+In that example, you would request the record where the name of the school is equal to Bel Air Academy.  You can use any data field in the query string.
 
-### Data Available
-We currently have the following endpoints available:
+####Single Records by ID
+If you want to access a record where you know the Whetstone _id field, you can make an HTTP GET request with the _id added to the endpoint.  For instance, to get a single school, you can use the endpoint: 
 
-**[School Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/schools.json)**: /api/v1/schools
+  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000 
 
-**[User Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/users.json)**: /api/v1/users
 
-**[Action Step and Goal Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/assignments.json)**: /api/v1/assignments
+#### Data Available via GET requests
+We currently have the following endpoints available for HTTP GET requests:
 
-**[Observation Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/observations.json)**: /api/v1/observations
+**[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/schools.json)**: /api/v1/schools
 
-**[Quick Feedback Data](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/informals.json)**: /api/v1/informals
+**[User Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/users.json)**: /api/v1/users
 
-**[Course Names](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/courses.json)**: /api/v1/courses
+**[Action Step and Goal Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/assignments.json)**: /api/v1/assignments
 
-**[Tag Names](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/tags.json)**: /api/v1/tags
+**[Observation Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/observations.json)**: /api/v1/observations
 
-If you click on the name, you'll see an example of what data is returned.  Again, each endpoint can also take query strings so if you wanted to find a single user record, you could make an HTTP GET request to: 
+**[Quick Feedback Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/informals.json)**: /api/v1/informals
 
-    /api/v1/users?_id=000000000000000000000000
+**[Course Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/courses.json)**: /api/v1/courses
 
-Examples of what kind of data you can expect are in the [ExampleData](https://github.com/WhetstoneEducation/API/blob/master/ExampleData/) folder.  We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a cross-platform Node.js script, a Windows PowerShell script, and a bash script that should run on Mac and Linux. If you have an example script in another language, please make a pull request. The more examples we have, the more useful this API will be.  And if you develop any cool tools using this API, please consider open-sourcing it so other schools can benefit. 
+**[Tag Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/tags.json)**: /api/v1/tags
+
+Examples of what kind of data you can expect are in the [EXAMPLE-GET-REQUEST-DATA](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/) folder.  
+
+###Sending Data to Whetstone###
+Pulling data is all well and good but what if you want to add or edit data?  That can be done through HTTP POST requests.  Only a subset of our data can be written in the API. If something you want to add isn't available here, get in touch and we'll discuss opening it up.
+
+####Adding Data####
+So, let's say you want to add a new user.  The authentication aspect is the same as making a GET request.  (If you haven't tried done that part of the tutorial, do that now before you start creating records willy-nilly.)  You just need to POST JSON data you want to add to the same endpoint.  For instance, to add a user with this data:
+  {
+    "name":"Some Name",
+    "email":"some.name@domain.org"
+  }
+
+you can make this cURL command:
+
+  curl -H "content-type:application/json" -X POST --data '{"name":"Fake User","email":"fakeuser@email.com"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/users
+  
+You'll probably want to add additional fields to your users when adding them but name and email are required.  
+
+####Editing Data
+
+To edit a user already in the database, we use the same authentication process as above but make an HTTP POST request using the _id field. For a school, that would look like: 
+  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
+  
+So, to update a school's name, you would run the following cURL command: 
+
+  curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
+
+Currently, school and user data can be added/edited via the API.  If you would like to add more, contact your friendly Whetstone Education CTO (Cody).
+
+####Examples of data for POST requests
+**[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/schools.json)**: /api/v1/schools
+
+**[User Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/users.json)**: /api/v1/users
+
+###Deleting Data
+This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to a school or user record's endpoint.  For instance, to archive (i.e., hide in the web interface) a school, you would use this cURL command:
+
+    curl -H "content-type:application/json" -X DELETE -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
+
+###Examples and Help
+
+We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a cross-platform Node.js script, a Windows PowerShell script, and a bash script that should run on Mac and Linux. If you have an example script in another language, please make a pull request. The more examples we have, the more useful this API will be.  And if you develop any cool tools using this API, please consider open-sourcing it so other schools can benefit. 
