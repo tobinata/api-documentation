@@ -87,6 +87,7 @@ You'll probably want to add additional fields to your users when adding them but
 ####Editing Data
 
 To edit a user already in the database, we use the same authentication process as above but make an HTTP POST request using the _id field. For a school, that would look like: 
+  
   http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
   
 So, to update a school's name, you would run the following cURL command: 
@@ -96,9 +97,9 @@ So, to update a school's name, you would run the following cURL command:
 Currently, school and user data can be added/edited via the API.  If you would like to add more, contact your friendly Whetstone Education CTO (Cody).
 
 ####Examples of data for POST requests
-**[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/schools.json)**: /api/v1/schools
+**[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/school.json)**: /api/v1/schools
 
-**[User Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/users.json)**: /api/v1/users
+**[User Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/user.json)**: /api/v1/users
 
 ###Deleting Data
 This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to a school or user record's endpoint.  For instance, to archive (i.e., hide in the web interface) a school, you would use this cURL command:
