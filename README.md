@@ -46,7 +46,7 @@ In that example, you would request the record where the name of the school is eq
 ####Single Records by ID
 If you want to access a record where you know the Whetstone _id field, you can make an HTTP GET request with the _id added to the endpoint.  For instance, to get a single school, you can use the endpoint: 
 
-  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000 
+    http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000 
 
 
 #### Data Available via GET requests
@@ -73,14 +73,14 @@ Pulling data is all well and good but what if you want to add or edit data?  Tha
 
 ####Adding Data####
 So, let's say you want to add a new user.  The authentication aspect is the same as making a GET request.  (If you haven't tried done that part of the tutorial, do that now before you start creating records willy-nilly.)  You just need to POST JSON data you want to add to the same endpoint.  For instance, to add a user with this data:
-  {
-    "name":"Some Name",
-    "email":"some.name@domain.org"
-  }
+    {
+      "name":"Some Name",
+      "email":"some.name@domain.org"
+    }
 
 you can make this cURL command:
 
-  curl -H "content-type:application/json" -X POST --data '{"name":"Fake User","email":"fakeuser@email.com"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/users
+    curl -H "content-type:application/json" -X POST --data '{"name":"Fake User","email":"fakeuser@email.com"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/users
   
 You'll probably want to add additional fields to your users when adding them but name and email are required.  
 
@@ -88,11 +88,11 @@ You'll probably want to add additional fields to your users when adding them but
 
 To edit a user already in the database, we use the same authentication process as above but make an HTTP POST request using the _id field. For a school, that would look like: 
   
-  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
+    http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
   
 So, to update a school's name, you would run the following cURL command: 
 
-  curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
+    curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
 
 Currently, school and user data can be added/edited via the API.  If you would like to add more, contact your friendly Whetstone Education CTO (Cody).
 
