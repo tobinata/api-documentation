@@ -66,13 +66,17 @@ We currently have the following endpoints available for HTTP GET requests:
 
 **[Tag Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/tags.json)**: /api/v1/tags
 
+**[Rubric Details](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/rubrics.json)**: /api/v1/rubrics
+
+**[Observation Type Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/observationTypes.json)**: /api/v1/observationtypes
+
 Examples of what kind of data you can expect are in the [EXAMPLE-GET-REQUEST-DATA](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/) folder.  
 
 ###Sending Data to Whetstone###
 Pulling data is all well and good but what if you want to add or edit data?  That can be done through HTTP POST requests.  Only a subset of our data can be written in the API. If something you want to add isn't available here, get in touch and we'll discuss opening it up.
 
 ####Adding Data####
-So, let's say you want to add a new user.  The authentication aspect is the same as making a GET request.  (If you haven't tried done that part of the tutorial, do that now before you start creating records willy-nilly.)  You just need to POST JSON data you want to add to the same endpoint.  For instance, to add a user with this data:
+So, let's say you want to add a new user.  The authentication aspect is the same as making a GET request.  (If you haven't tried that part of the tutorial, it's a good idea to do that first before you start creating records willy-nilly.)  You just need to POST JSON data you want to add to the same endpoint.  For instance, to add a user with this data:
     {
       "name":"Some Name",
       "email":"some.name@domain.org"
@@ -94,17 +98,19 @@ So, to update a school's name, you would run the following cURL command:
 
     curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
 
-Currently, school and user data can be added/edited via the API.  If you would like to add more, contact your friendly Whetstone Education CTO (Cody).
+Currently, school and user data can be added/edited via the API.  If you would like to add more, contact your friendly Whetstone Education CTO (Cody) and he'll open that up.
 
-####Examples of data for POST requests
+####Examples of data that can be sent via POST requests
 **[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/school.json)**: /api/v1/schools
 
 **[User Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/user.json)**: /api/v1/users
 
 ###Deleting Data
-This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to a school or user record's endpoint.  For instance, to archive (i.e., hide in the web interface) a school, you would use this cURL command:
+This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't completely delete anything in this way.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to a school or user record's endpoint.  For instance, to archive (i.e., hide a user in the web interface) a school, you would use this cURL command:
 
     curl -H "content-type:application/json" -X DELETE -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
+
+You can also archive a user while editing their data by setting the archivedAt field to a JavaScript-style date format that looks like this: 2015-07-11T20:02:12-05:00 but we recommend doing it with a DELETE request, which automatically sets the timestamp.
 
 ###Examples and Help
 
