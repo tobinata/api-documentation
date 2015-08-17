@@ -56,6 +56,8 @@ We currently have the following endpoints available for HTTP GET requests:
 
 **[User Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/users.json)**: /api/v1/users
 
+**[User Data (SCIM compliant)](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/usersscim.json)**: /api/v1/usersscim
+
 **[Action Step and Goal Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/assignments.json)**: /api/v1/assignments
 
 **[Observation Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/observations.json)**: /api/v1/observations
@@ -104,6 +106,9 @@ Currently, school and user data can be added/edited via the API.  If you would l
 **[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/school.json)**: /api/v1/schools
 
 **[User Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/user.json)**: /api/v1/users
+
+**[User Data (SCIM compliant)](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/userscim.json)**: /api/v1/usersscim
+
 
 ###Deleting Data
 This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't completely delete anything in this way.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to a school or user record's endpoint.  For instance, to archive (i.e., hide a user in the web interface) a school, you would use this cURL command:

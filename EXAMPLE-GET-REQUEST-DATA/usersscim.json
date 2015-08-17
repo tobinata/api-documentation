@@ -1,0 +1,24 @@
+{
+  "schemas":["urn:scim:schemas:core:1.0"],
+  "id":"000000000000000000000000",
+  "externalId":"exampleteacher@whetstoneeducation.org",
+  "meta":{
+    "created":"2011-08-01T18:29:49.793Z",
+    "lastModified":null,
+    "location":null,
+    "version":null
+  },
+  "name":{
+    "formatted":"Example Teacher",
+    "familyName":"Example",
+    "givenName":"Teacher"
+  },
+  "userName":"exampleteacher@whetstoneeducation.org",
+  "phoneNumbers":[],
+  "emails":[
+    {
+      "value":"exampleteacher@whetstoneeducation.org",
+      "type":"work"
+    }
+  ]
+}
