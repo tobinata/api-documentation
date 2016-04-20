@@ -125,4 +125,6 @@ You can also archive a user while editing their data by setting the archivedAt f
 
 ###Examples and Help
 
-We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a cross-platform Node.js script, a Windows PowerShell script, and a bash script that should run on Mac and Linux. If you have an example script in another language, please make a pull request. The more examples we have, the more useful this API will be.  And if you develop any cool tools using this API, please consider open-sourcing it so other schools can benefit. 
+We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a Node.js script (cross-platform), a Python Script (cross-platform), a PowerShell script (Windows), and a bash script (OS X, Linux, *nix and anywhere else bash and cURL can be found). 
+
+If you have an example script in another language, please share it with is, either via email or by making a pull request and adding it (make sure to delete your API key!) And if you develop any cool tools using this API, please consider open-sourcing it so other schools can benefit. 
