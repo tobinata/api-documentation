@@ -1,0 +1,17 @@
+{
+  "_id": "000000000000000000000000",
+  "creator": {
+    "_id": "000000000000000000000000",
+    "name": "Example Coach"
+  },
+  "user": {
+    "_id": "000000000000000000000000",
+    "name": "Example Teacher"
+  },
+  "observation": "000000000000000000000000",
+  "url": "https://whetstone-uploads.s3.amazonaws.com/instance-name/000000000000000000000000_1439582443953.xlsx",
+  "name": "Name of the File",
+  "shared": true,
+  "tags": [],
+  "created": "2015-08-14T20:02:23.724Z"
+}

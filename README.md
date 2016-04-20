@@ -76,6 +76,8 @@ We currently have the following endpoints available for HTTP GET requests:
 
 **[Measurement Group Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/measurementGroups.json)**: /api/v1/measurementGroups
 
+**[File Uploads](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/files.json)**: /api/v1/files
+
 Examples of what kind of data you can expect are in the [EXAMPLE-GET-REQUEST-DATA](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/) folder.  
 
 ###Sending Data to Whetstone###
