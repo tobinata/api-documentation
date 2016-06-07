@@ -9,7 +9,7 @@ The first step to accessing the API is to get your API key.  After logging into 
 
 By default, your API key is hidden.  Click, "Show my API key" to reveal an alphanumeric hash key.  That's your personal key to access Whetstone data.  You can also generate a new API key by clicking "Generate New API Key." That invalidates the old key and creates a new one.  
 
-Now that you have an API key, you can make an HTTP POST request with your key to our authentication endpoint to get a temporary access token.  We've got a few  [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) available to get you started but If you're using cURL, you can run this command:
+Now that you have an API key, you can make an HTTP POST request with your key to our authentication endpoint to get a temporary access token.  We've got a handful of [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) available to get you started but If you're using cURL, you can run this command:
 
     curl -s --data "apikey=YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/api
 
@@ -125,6 +125,6 @@ You can also archive a user while editing their data by setting the archivedAt f
 
 ###Examples and Help
 
-We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a Node.js script (cross-platform), a Python Script (cross-platform), a PowerShell script (Windows), and a bash script (OS X, Linux, *nix and anywhere else bash and cURL can be found). 
+We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a Node.js script (cross-platform), a Python Script (cross-platform), a Go script (cross-platform), a PowerShell script (Windows), and a bash script (OS X, Linux, Unix, and anywhere else bash and cURL can be found). 
 
-If you have an example script in another language, please share it with is, either via email or by making a pull request and adding it (make sure to delete your API key!) And if you develop any cool tools using this API, please consider open-sourcing it so other schools can benefit. 
+If you have an example script in another language, please share it with us, either via email or by making a pull request and adding it (make sure to delete your API key!) If you develop any useful tools using this API, please consider open-sourcing it so other schools can benefit. 
