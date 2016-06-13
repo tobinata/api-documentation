@@ -11,7 +11,7 @@ By default, your API key is hidden.  Click, "Show my API key" to reveal an alpha
 
 Now that you have an API key, you can make an HTTP POST request with your key to our authentication endpoint to get a temporary access token.  We've got a handful of [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) available to get you started but If you're using cURL, you can run this command:
 
-    curl -s --data "apikey=YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/api
+    curl -s --data "apikey=YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/api
 
 If everything checks out, you should receive a JSON response that looks like this:
 
@@ -28,25 +28,25 @@ If everything checks out, you should receive a JSON response that looks like thi
 ###Getting Data from Whetstone - HTTP GET
 Using the key and token, you can make GET requests to pull data.  Let's get the list of schools as an example.  The endpoint for schools data is:
 
-    http://YOUR_INSTANCE.whetstoneeducation.com/api/v1/schools
+    https://YOUR_INSTANCE.whetstoneeducation.com/api/v1/schools
     
 To access data, you need to make an HTTP GET request with the *access-token* and *key* included in the headers. Using cURL, it would look like this.
 
-    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools;
+    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools;
 
 If everything checks out, you'll get back all the schools data in Whetstone's database in JSON format.  
 
 ####Querying Data
 If you want to query the database, you can append a query string to your endpoint. In cURL, it would look like this:
 
-    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools?name=Bel+Air+Academy;
+    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools?name=Bel+Air+Academy;
 
 In that example, you would request the record where the name of the school is equal to Bel Air Academy.  You can use any data field in the query string.
 
 ####Single Records by ID
 If you want to access a record where you know the Whetstone _id field, you can make an HTTP GET request with the _id added to the endpoint.  For instance, to get a single school, you can use the endpoint: 
 
-    http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000 
+    https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000 
 
 
 #### Data Available via GET requests
@@ -92,7 +92,7 @@ So, let's say you want to add a new user.  The authentication aspect is the same
 
 you can make this cURL command:
 
-    curl -H "content-type:application/json" -X POST --data '{"name":"Fake User","email":"fakeuser@email.com"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/users
+    curl -H "content-type:application/json" -X POST --data '{"name":"Fake User","email":"fakeuser@email.com"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/users
   
 You'll probably want to add additional fields to your users when adding them but name and email are required.  
 
@@ -100,11 +100,11 @@ You'll probably want to add additional fields to your users when adding them but
 
 To edit a user already in the database, we use the same authentication process as above but make an HTTP POST request using the _id field. For a school, that would look like: 
   
-    http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
+    https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
   
 So, to update a school's name, you would run the following cURL command: 
 
-    curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
+    curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
 
 Currently, school and user data can be added/edited via the API.  If you would like to add more, contact your friendly Whetstone Education CTO (Cody) and he'll open that up.
 
@@ -119,7 +119,7 @@ Currently, school and user data can be added/edited via the API.  If you would l
 ###Deleting Data
 This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't completely delete anything in this way.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to a school or user record's endpoint.  For instance, to archive (i.e., hide a user in the web interface) a school, you would use this cURL command:
 
-    curl -H "content-type:application/json" -X DELETE -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" http://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
+    curl -H "content-type:application/json" -X DELETE -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
 
 You can also archive a user while editing their data by setting the archivedAt field to a JavaScript-style date format that looks like this: 2015-07-11T20:02:12-05:00 but we recommend doing it with a DELETE request, which automatically sets the timestamp.
 
