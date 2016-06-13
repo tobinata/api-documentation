@@ -10,6 +10,7 @@
   "additionalEmails": [
     "example@gmail.com"
   ],
+  "localkey":"000000000000000000000000",
   "defaultInformation": {
     "school": {
       "_id": "000000000000000000000000",

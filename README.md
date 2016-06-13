@@ -141,6 +141,14 @@ This is obviously a danger zone.  You probably shouldn't delete anything and, in
 
 You can also archive a user while editing their data by setting the archivedAt field to a JavaScript-style date format that looks like this: 2015-07-11T20:02:12-05:00 but we recommend doing it with a DELETE request, which automatically sets the timestamp.
 
+
+###Authenticating users
+If you work with other vendors whose login system you trust, you can have them create links to log users into Whetstone directly from their authenticated area. Each user has a 24 bit "localkey" field that can be used in lieu of a password.  Keys expire at irregular intervals and should never be cached or bookmarked. In order for a user to login using their localkey, the vendor should use the API to retreive the user's record and send the user to a URL like this: 
+
+    https://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/localkey?apikey=USERS_LOCAL_KEY&_id=USERS_WHETSTONE_ID
+
+Bypassing normal authentication routes obviously has major security implications. Whetstone has no control over third-party login systems and allowing another vendor to log people into Whetstone opens another path for data to be compromised. It is very important to only allow highly trusted vendors access to this authentication method. If you're looking for a Single-Sign-On solution, we also support OAUTH 2 and SAML.  While not as seamless, those methods are well-tested and are often preferable to creating custom authentication methods.  (In the real world, it's unlikely you'd ever use this sort of authentication method outside of an integration project involving the Whetstone team.)  
+
 ###Examples and Help
 
 We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a Node.js script (cross-platform), a Python Script (cross-platform), a Go script (cross-platform), a PowerShell script (Windows), and a bash script (OS X, Linux, Unix, and anywhere else bash and cURL can be found). 
