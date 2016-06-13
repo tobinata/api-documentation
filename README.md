@@ -147,7 +147,7 @@ If you work with other vendors whose login system you trust, you can have them c
 
     https://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/localkey?apikey=USERS_LOCAL_KEY&_id=USERS_WHETSTONE_ID
 
-Bypassing normal authentication routes obviously has major security implications. Whetstone has no control over third-party login systems and allowing another vendor to log people into Whetstone opens another path for data to be compromised. It is very important to only allow highly trusted vendors access to this authentication method. If you're looking for a Single-Sign-On solution, we also support OAUTH 2 and SAML.  While not as seamless, those methods are well-tested and are often preferable to creating custom authentication methods.  (In the real world, it's unlikely you'd ever use this sort of authentication method outside of an integration project involving the Whetstone team.)  
+Bypassing normal authentication routes obviously has major security implications. Whetstone has no control over third-party login systems and allowing another vendor to log people into Whetstone opens another path for data to be compromised. If you're looking for a Single-Sign-On solution, we also support OAUTH 2 and SAML. Those methods are well-tested and are often preferable to creating custom authentication methods. This authentication method can be employed to make systems more secure than traditional username/password logins. We make it available for that reason but it's important to understand the risks. (In the real world, it's unlikely you'd ever use this authentication method outside of an integration project involving the Whetstone team.)
 
 ###Examples and Help
 
