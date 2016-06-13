@@ -43,6 +43,24 @@ If you want to query the database, you can append a query string to your endpoin
 
 In that example, you would request the record where the name of the school is equal to Bel Air Academy.  You can use any data field in the query string.
 
+If you want to query by date range, you can use the $gte or $lte (greater than or equal to) operators that, in JavaScript, would look like this:
+
+    var queryString = {
+      observedAt: {
+        $gte: new Date(2015,3,1),
+        $lte: new Date()
+      }
+    }
+The equivalent query string encoded would be: 
+
+    observedAt%5B%24gte%5D=2015-04-01T05%3A00%3A00.000Z&observedAt%5B%24lte%5D=2016-06-13T15%3A18%3A04.272Z'
+
+And in cURL, you'd request it like this:
+
+    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/observations?observedAt%5B%24gte%5D=2015-04-01T05%3A00%3A00.000Z&observedAt%5B%24lte%5D=2016-06-13T15%3A18%3A04.272Z'';
+
+Our API seeks to mimic the MongoDB query language, which is JavaScript based. To learn more, visit the [MongoDB query documentation](https://docs.mongodb.com/manual/reference/operator/query/).
+
 ####Single Records by ID
 If you want to access a record where you know the Whetstone _id field, you can make an HTTP GET request with the _id added to the endpoint.  For instance, to get a single school, you can use the endpoint: 
 
