@@ -45,7 +45,7 @@ In that example, you would request the record where the name of the school is eq
 
 If you prefer XML over JSON, you can add a format: xml to the headers like this:
 
-curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" -H "format:xml" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools?name=Bel+Air+Academy;
+    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" -H "format:xml" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools?name=Bel+Air+Academy;
 
 If you want to query by date range, you can use the $gte or $lte (greater than or equal to) operators that, in JavaScript, would look like this:
 
@@ -55,6 +55,7 @@ If you want to query by date range, you can use the $gte or $lte (greater than o
         $lte: new Date()
       }
     }
+
 The equivalent query string encoded would be: 
 
     observedAt%5B%24gte%5D=2015-04-01T05%3A00%3A00.000Z&observedAt%5B%24lte%5D=2016-06-13T15%3A18%3A04.272Z'
