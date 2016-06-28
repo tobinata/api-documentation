@@ -43,6 +43,10 @@ If you want to query the database, you can append a query string to your endpoin
 
 In that example, you would request the record where the name of the school is equal to Bel Air Academy.  You can use any data field in the query string.
 
+If you prefer XML over JSON, you can add a format: xml to the headers like this:
+
+curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" -H "format:xml" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools?name=Bel+Air+Academy;
+
 If you want to query by date range, you can use the $gte or $lte (greater than or equal to) operators that, in JavaScript, would look like this:
 
     var queryString = {

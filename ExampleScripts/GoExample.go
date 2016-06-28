@@ -8,7 +8,7 @@ import (
   "encoding/json"
 )
 
-// NOTE: Go is (probably obviously) not a language I've used before. 
+// NOTE: Go is (probably obviously) not a language I've used extensively. 
 // This works but probably isn't very well written code
 
 func main() {
