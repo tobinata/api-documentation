@@ -1,5 +1,8 @@
 # Whetstone API
 
+## Version 2 Currently in Beta
+Version 2 of the API is coming soon.  For the most part, changes will be minimal for existing endpoints.  We're mostly adding features like XML support and additional endpoints.  Version 1 of the API will be deprecated in July but will still available for existing scripts.  When version 2 is available, we'll include migration scripts and other documentation. (For most people, you just replace v1 with v2 in the URLs and everything will work).
+
 ### Pre-requisites
 In order to access the API, you need a Whetstone account at the admin level and also to have requested that the API be enabled. If you do not have either of those pre-requesites, contact your network admin.
 
