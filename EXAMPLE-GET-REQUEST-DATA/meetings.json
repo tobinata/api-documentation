@@ -1,0 +1,72 @@
+{ 
+  "_id": "000000000000000000000000",
+  "creator": { 
+    "_id": "000000000000000000000000", 
+    "name": "Support User" 
+  },
+  "type": { 
+    "_id": "000000000000000000000000", 
+    "name": "Quick Meeting" 
+  },
+  "comments":[ 
+    { 
+      "_id": "000000000000000000000000",
+      "parent": "",
+      "content": "This is a comment",
+      "fullname": "Example Teacher",
+      "creator": "000000000000000000000000",
+      "createdByAdmin": false,
+      "modified": "2016-08-10T19:16:18.020Z",
+      "created": "2016-08-10T19:16:18.020Z" 
+    } 
+  ],
+  "additionalFields":[ 
+    { 
+      "typeid": "000000000000000000000000",
+      "type": "wysiwyg",
+      "content": "<p>Example Text</p>",
+      "_id": "000000000000000000000000"
+    },
+    { 
+      "typeid": "000000000000000000000000",
+      "type": "number",
+      "content": "4",
+      "_id": "000000000000000000000000"
+    }
+  ],
+  "private": false,
+  "locked": false,
+  "files": [ "000000000000000000000000" ],
+  "tags": [],
+  "absentees": [
+    {
+      "_id": "000000000000000000000000",
+      "name": "Example Teacher"
+    }
+  ],
+  "participants": [
+    {
+      "_id": "000000000000000000000000",
+      "name": "Example Teacher"
+    }
+  ],
+  "date": "2016-08-10T19:15:00.000Z",
+  "created": "2016-08-10T19:15:13.820Z",
+  "course": { 
+    "_id": "000000000000000000000000", 
+    "name": "ELA" 
+  },
+  "grade": { 
+    "_id": "000000000000000000000000", 
+    "name": "3rd grade" 
+  },
+  "module": { 
+    "_id": "000000000000000000000000", 
+    "name": "Module 1" 
+  },
+  "school": { 
+    "_id": "000000000000000000000000", 
+    "name": "North Forest" 
+  },
+  "title": "Title of Meeting" 
+}

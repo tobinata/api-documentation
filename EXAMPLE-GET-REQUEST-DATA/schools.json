@@ -16,8 +16,6 @@
         "000000000000000000000000"
       ]
     },
-    
-    },
     {
       "_id": "000000000000000000000000",
       "name": "Example Group 2",
@@ -44,14 +42,23 @@
       "name": "Example Assistant Principal"
     }
   ],
+  "nonInstructionalAdmins": [
+    {
+      "_id": "000000000000000000000000",
+      "name": "Example Non-Instructional Admin"
+    }
+  ],
   "abbreviation": "ES",
   "address": "123 Test Street",
   "city": "Test City",
+  "cluster": "North",
+  "gradeSpan": "Middle School",
   "highGrade": "12",
   "lowGrade": "K",
   "phone": "000-000-0000",
   "principal": "Example Principal",
   "region": "West",
   "state": "Louisiana",
+  "ward":"4th Ward",
   "zip": "70119"
 }

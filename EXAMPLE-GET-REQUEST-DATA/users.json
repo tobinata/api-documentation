@@ -2,21 +2,68 @@
   "_id": "000000000000000000000000",
   "name": "Example Teacher",
   "email": "exampleteacher@whetstoneeducation.org",
+  "internalId":"0000",
+  "powerSchoolId":"0000",
+  "accountingId": "0000",
+  "archivedAt":"2015-02-25T23:01:51.586Z",
+  "inactive":false,
   "coach": {
     "_id": "000000000000000000000000",
     "name": "Example Coach"
   },
+  "usertype": {
+    "_id": "000000000000000000000000",
+    "name": "2nd Year Teacher"
+  },
+  "pastUserTypes": [
+    {
+      "usertype": {
+        "_id": "000000000000000000000000",
+        "name": "1st Year Teacher"
+      },
+      "date": "2015-02-25T23:01:51.586Z",
+      "academicYear": "2015"
+    }
+  ],
+  "pastDefaultInformations": [
+    {
+      "academicYear": "2015",
+      "school": {
+        "_id": "000000000000000000000000",
+        "name": "Example School"
+      },
+      "gradeLevel": {
+        "_id": "000000000000000000000000",
+        "name": "1st Grade"
+      },
+      "period": {
+        "_id": "000000000000000000000000",
+        "name": "2nd Period"
+      },
+      "course": {
+        "_id": "000000000000000000000000",
+        "name": "Math"
+      }
+    }
+  ],
   "created": "2015-02-25T23:01:51.586Z",
   "additionalEmails": [
     "example@gmail.com"
   ],
-  "localkey":"000000000000000000000000",
+  "localkey":"000000000000000000000000000000000000000000000000",
   "defaultInformation": {
     "school": {
       "_id": "000000000000000000000000",
       "name": "Example School"
     },
-    "grade": 10,
+    "gradeLevel": {
+      "_id": "000000000000000000000000",
+      "name": "1st Grade"
+    },
+    "period": {
+      "_id": "000000000000000000000000",
+      "name": "2nd Period"
+    },
     "course": {
       "_id": "000000000000000000000000",
       "name": "Math"

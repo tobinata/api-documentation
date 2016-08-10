@@ -1,6 +1,13 @@
 {
   "_id": "000000000000000000000000",
-  "observationType": null,
+  "observationType": {
+    "_id": "000000000000000000000000",
+    "name": "Example Observation Type"
+  },
+  "observationModule": {
+    "_id": "000000000000000000000000",
+    "name": "Example Observation Module"
+  },
   "rubric": {
     "_id": "000000000000000000000000",
     "name": "Observation Feedback Form"
@@ -14,9 +21,22 @@
     "name": "Example Teacher"
   },
   "teachingAssignment": {
-    "school": "000000000000000000000000",
-    "grade": 7,
-    "course": "000000000000000000000000"
+    "school": {
+      "_id": "000000000000000000000000",
+      "name": "Example School"
+    },
+    "gradeLevel": {
+      "_id": "000000000000000000000000",
+      "name": "1st Grade"
+    },
+    "course": {
+      "_id": "000000000000000000000000",
+      "name": "Math"
+    },
+    "period": {
+      "_id": "000000000000000000000000",
+      "name": "1st Period"
+    },
   },
   "scores": [
     {
@@ -36,7 +56,37 @@
       "value":3
     }
   ],
+  "videoNotes": [
+    { 
+      "created": "2016-08-10T19:43:56.000Z",
+      "text": "private video note",
+      "_id": "000000000000000000000000",
+      "shared": false 
+    },
+    { 
+      "created": "2016-08-10T19:43:57.000Z",
+      "text": "shared video note",
+      "_id": "000000000000000000000000",
+      "shared": true 
+    }
+  ],
+  "magicNotes":[ 
+    { 
+      "created": "2016-08-10T19:43:56.000Z",
+      "text": "private note",
+      "_id": "000000000000000000000000",
+      "shared": false 
+    },
+    { 
+      "created": "2016-08-10T19:43:57.000Z",
+      "text": "shared note",
+      "_id": "000000000000000000000000",
+      "shared": true 
+    } 
+   ],
   "firstPublished": "2015-03-03T01:19:45.059Z",
+  "lastPublished": "2016-08-10T19:44:07.415Z",
+  "viewedByTeacher": "2016-08-10T19:44:07.415Z",
   "observedAt": "2015-02-04T00:19:00.000Z",
   "created": "2015-03-03T01:19:14.874Z"
 }

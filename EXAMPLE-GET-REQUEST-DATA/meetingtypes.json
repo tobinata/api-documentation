@@ -1,0 +1,19 @@
+{
+  "_id": "000000000000000000000000",
+  "name": "Quick Meeting",
+  "abbreviation": "Quick",
+  "additionalFields": [ 
+    { "name": "Private Notes",
+       "type": "wysiwyg",
+       "isPrivate": true,
+       "description": "Here is where you put private notes",
+       "_id": "000000000000000000000000"
+    },
+    { "name": "Shared Notes",
+       "type": "wysiwyg",
+       "isPrivate": false,
+       "description": "Here is where you put shared notes",
+       "_id": "000000000000000000000000" 
+     }
+  ]
+}

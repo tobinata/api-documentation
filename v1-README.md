@@ -1,16 +1,7 @@
 # Whetstone API
 
-### Changelog from v1
-
-- Updated endpoint to /api/v2/endpoint
-- Added 4 new endpoints (grades, meetings, meetingtypes, videos)
-- Grades are now a customizable field and the API has been adjusted to reflect that. Some older data may have both grade and gradeLevel. In those instances, gradeLevel is the new version. The grade field will be removed in a future update.  
-- Where possible, sub-fields have been populated.  For instance, if an observation is tagged, rather than returning an array of tag _id fields, the API now returns an array of tag objects.  This is likely a breaking change from v1 of the API for some scripts. It should allow for simplification and fewer joins on your end. (Version 1 of the API is deprecated but will remain available for the forseeable future.)
-- Nearly all endpoints return additional data elements. 
-
-
 ### Pre-requisites
-In order to access the API, you need a Whetstone account at the admin permission level.
+In order to access the API, you need a Whetstone account at the admin level and also to have requested that the API be enabled. If you do not have either of those pre-requesites, contact your network admin.
 
 ### Introduction
 
@@ -98,8 +89,6 @@ We currently have the following endpoints available for HTTP GET requests:
 
 **[Course Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/courses.json)**: /api/v1/courses
 
-**[Grade Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/grades.json)**: /api/v1/grades
-
 **[Tag Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/tags.json)**: /api/v1/tags
 
 **[Rubric Details](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/rubrics.json)**: /api/v1/rubrics
@@ -111,14 +100,6 @@ We currently have the following endpoints available for HTTP GET requests:
 **[Measurement Group Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/measurementGroups.json)**: /api/v1/measurementGroups
 
 **[File Uploads](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/files.json)**: /api/v1/files
-
-**[Meetings](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/meetings.json)**: /api/v1/meetings
-
-**[Meetings](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/meetings.json)**: /api/v1/meetings
-
-**[Meeting Types](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/meetingtypes.json)**: /api/v1/meetingtypes
-
-**[Videos](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/videos.json)**: /api/v1/videos
 
 Examples of what kind of data you can expect are in the [EXAMPLE-GET-REQUEST-DATA](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/) folder.  
 
