@@ -3,7 +3,7 @@ var request = require('request');
 
 var apikey = ""; // YOUR API KEY GOES HERE
 var url = "http://instance.whetstoneeducation.com"; // CHANGE TO YOUR URL
-var endpoint="/api/v1/schools" // CHANGE THIS TO THE ENDPOINT YOU WANT TO ACCESS
+var endpoint="/api/v2/schools" // CHANGE THIS TO THE ENDPOINT YOU WANT TO ACCESS
 
 //initial request to authentication server
 var options = {

@@ -3,7 +3,7 @@
 # Enter user credentials here
 apikey=""; # YOUR API KEY GOES HERE 
 url="http://instance.whetstoneeducation.com"; # CHANGE INSTANCE TO YOUR URL
-endpoint="/api/v1/users"
+endpoint="/api/v2/schools"
 
 function jsonval {
   # function to parse json string and get a variable 

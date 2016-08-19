@@ -13,7 +13,7 @@ import (
 
 func main() {
   url := "https://instance.whetstoneeducation.com" //change "instance" to your instance name
-  endpoint := "/api/v1/schools"; //endpoint we plan to consume
+  endpoint := "/api/v2/schools"; //endpoint we plan to consume
   apikey := ""; //add your API key here
 
   // the authorization server URL

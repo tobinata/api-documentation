@@ -5,7 +5,7 @@ $apiKey = "PASTE YOUR API KEY HERE";
 $resource = "http://instance-name.whetstoneeducation.com";
 
 #The API resource (this script gets the list of schools so it's /api/v1/schools)
-$endpoint = "/api/v1/schools";
+$endpoint = "/api/v2/schools";
 
 #This is the URL that will authenticate you using your key
 $authURL = "$resource/auth/api";

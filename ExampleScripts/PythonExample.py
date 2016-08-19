@@ -6,7 +6,7 @@ import json
 # Enter user credentials here
 apikey=""; # YOUR API KEY GOES HERE 
 url="http://instance.whetstoneeducation.com"; # CHANGE INSTANCE TO YOUR URL
-endpoint="/api/v1/schools"
+endpoint="/api/v2/schools"
 
 # first send your API key via form POST to the authorization endpoint
 authurl = url+'/auth/api';
