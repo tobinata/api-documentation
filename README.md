@@ -1,5 +1,9 @@
 # Whetstone API
 
+### Recent Updates
+- Added additional ID fields on references to users to make integration with other platforms easier. For instance, the "observer" and "teacher" fields on an observation will now include internalId, accountingId, powerSchoolId, and canvasId. If you'd like to populate our database with ID fields from other databases, check out the "Imports" feature in Whetstone or get in touch. We're happy to do an initial import to get those fields populated for existing users. 
+- Draft observations are now available by adding {isPublished: 0} to an observation query.
+
 ### Changelog from v1
 
 - Updated endpoint to /api/v2/endpoint
@@ -171,7 +175,7 @@ If you work with other vendors whose login system you trust, you can have them c
 
     https://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/localkey?apikey=USERS_LOCAL_KEY&_id=USERS_WHETSTONE_ID
 
-Bypassing normal authentication routes obviously has major security implications. Whetstone has no control over third-party login systems and allowing another vendor to log people into Whetstone opens another path for data to be compromised. If you're looking for a Single-Sign-On solution, we also support OAUTH 2 and SAML. Those methods are well-tested and are often preferable to creating custom authentication methods. This authentication method can be employed to make systems more secure than traditional username/password logins. We make it available for that reason but it's important to understand the risks. (In the real world, it's unlikely you'd ever use this authentication method outside of an integration project involving the Whetstone team.)
+Bypassing normal authentication routes obviously has security implications. Whetstone has no control over third-party login systems and allowing another vendor to log people into Whetstone opens another path for data to be compromised. If you're looking for a Single-Sign-On solution, we also support OAUTH 2 and SAML. Those methods are often preferable to creating custom authentication methods. 
 
 ###Examples and Help
 
