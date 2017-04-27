@@ -1,6 +1,8 @@
 # Whetstone API
 
 ### Recent Updates
+- Added an [example script](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts/NodeJSExample-LargeDataSets.js) for pulling data by month. This is especially useful for large networks who may experience timeout issues when pulling large data sets like observations or scores
+- Added scores endpoint
 - Added additional ID fields on references to users to make integration with other platforms easier. For instance, the "observer" and "teacher" fields on an observation will now include internalId, accountingId, powerSchoolId, and canvasId. If you'd like to populate our database with ID fields from other databases, check out the "Imports" feature in Whetstone or get in touch. We're happy to do an initial import to get those fields populated for existing users. 
 - Draft observations are now available by adding {isPublished: 0} to an observation query.
 
@@ -47,7 +49,9 @@ To access data, you need to make an HTTP GET request with the *access-token* and
 
     curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools;
 
-If everything checks out, you'll get back all the schools data in Whetstone's database in JSON format.  
+If everything checks out, you'll get back all the schools data in Whetstone's database in JSON format. 
+
+When pulling data, there is a 30s limit. All requests taking longer than that will trigger a timeout error. If you encounter an error, the best course of action is to use query data in multiple requests and combine the data for further processing. We also have an [example NodeJS script](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts/NodeJSExample-LargeDataSets.js) showing how to pull a large amounts of data by month in order to avoid the 30s limit.
 
 ####Querying Data
 If you want to query the database, you can append a query string to your endpoint. In cURL, it would look like this:
@@ -97,6 +101,9 @@ We currently have the following endpoints available for HTTP GET requests:
 **[Action Step and Goal Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/assignments.json)**: /api/v1/assignments
 
 **[Observation Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/observations.json)**: /api/v1/observations
+
+**[Scores Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/scores.json)**: /api/v1/scores
+*Note: scores are aslo included with observations*
 
 **[Quick Feedback Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/informals.json)**: /api/v1/informals
 
