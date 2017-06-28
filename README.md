@@ -40,7 +40,7 @@ If everything checks out, you should receive a JSON response that looks like thi
        }
      }
 
-###Getting Data from Whetstone - HTTP GET
+### Getting Data from Whetstone - HTTP GET
 Using the key and token, you can make GET requests to pull data.  Let's get the list of schools as an example.  The endpoint for schools data is:
 
     https://YOUR_INSTANCE.whetstoneeducation.com/api/v1/schools
@@ -53,7 +53,7 @@ If everything checks out, you'll get back all the schools data in Whetstone's da
 
 When pulling data, there is a 30s limit. All requests taking longer than that will trigger a timeout error. If you encounter an error, the best course of action is to use query data in multiple requests and combine the data for further processing. We also have an [example NodeJS script](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts/NodeJSExample-LargeDataSets.js) showing how to pull a large amounts of data by month in order to avoid the 30s limit.
 
-####Querying Data
+#### Querying Data
 If you want to query the database, you can append a query string to your endpoint. In cURL, it would look like this:
 
     curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools?name=Bel+Air+Academy;
@@ -133,10 +133,10 @@ We currently have the following endpoints available for HTTP GET requests:
 
 Examples of what kind of data you can expect are in the [EXAMPLE-GET-REQUEST-DATA](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/) folder.  
 
-###Sending Data to Whetstone###
+### Sending Data to Whetstone
 Pulling data is all well and good but what if you want to add or edit data?  That can be done through HTTP POST requests.  Only a subset of our data can be written in the API. If something you want to add isn't available here, get in touch and we'll discuss opening it up.
 
-####Adding Data####
+#### Adding Data
 So, let's say you want to add a new user.  The authentication aspect is the same as making a GET request.  (If you haven't tried that part of the tutorial, it's a good idea to do that first before you start creating records willy-nilly.)  You just need to POST JSON data you want to add to the same endpoint.  For instance, to add a user with this data:
     {
       "name":"Some Name",
@@ -149,7 +149,7 @@ you can make this cURL command:
   
 You'll probably want to add additional fields to your users when adding them but name and email are required.  
 
-####Editing Data
+#### Editing Data
 
 To edit a user already in the database, we use the same authentication process as above but make an HTTP POST request using the _id field. For a school, that would look like: 
   
@@ -161,7 +161,7 @@ So, to update a school's name, you would run the following cURL command:
 
 Currently, school and user data can be added/edited via the API.  If you would like to add more, contact your friendly Whetstone Education CTO (Cody) and he'll open that up.
 
-####Examples of data that can be sent via POST requests
+#### Examples of data that can be sent via POST requests
 **[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/school.json)**: /api/v1/schools
 
 **[User Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/user.json)**: /api/v1/users
@@ -169,7 +169,7 @@ Currently, school and user data can be added/edited via the API.  If you would l
 **[User Data (SCIM compliant)](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/userscim.json)**: /api/v1/usersscim
 
 
-###Deleting Data
+### Deleting Data
 This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't completely delete anything in this way.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to a school or user record's endpoint.  For instance, to archive (i.e., hide a user in the web interface) a school, you would use this cURL command:
 
     curl -H "content-type:application/json" -X DELETE -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v1/schools/000000000000000000000000
@@ -177,14 +177,14 @@ This is obviously a danger zone.  You probably shouldn't delete anything and, in
 You can also archive a user while editing their data by setting the archivedAt field to a JavaScript-style date format that looks like this: 2015-07-11T20:02:12-05:00 but we recommend doing it with a DELETE request, which automatically sets the timestamp.
 
 
-###Authenticating users
+### Authenticating users
 If you work with other vendors whose login system you trust, you can have them create links to log users into Whetstone directly from their authenticated area. Each user has a 24 bit "localkey" field that can be used in lieu of a password.  Keys expire at irregular intervals and should never be cached or bookmarked. In order for a user to login using their localkey, the vendor should use the API to retreive the user's record and send the user to a URL like this: 
 
     https://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/localkey?apikey=USERS_LOCAL_KEY&_id=USERS_WHETSTONE_ID
 
 Bypassing normal authentication routes obviously has security implications. Whetstone has no control over third-party login systems and allowing another vendor to log people into Whetstone opens another path for data to be compromised. If you're looking for a Single-Sign-On solution, we also support OAUTH 2 and SAML. Those methods are often preferable to creating custom authentication methods. 
 
-###Examples and Help
+### Examples and Help
 
 We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a Node.js script (cross-platform), a Python Script (cross-platform), a Go script (cross-platform), a PowerShell script (Windows), and a bash script (OS X, Linux, Unix, and anywhere else bash and cURL can be found). 
 
