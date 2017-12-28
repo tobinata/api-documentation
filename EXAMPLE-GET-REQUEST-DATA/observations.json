@@ -38,6 +38,20 @@
       "name": "1st Period"
     },
   },
+  "score": 4.4,
+  "scoreAveragedByStrand": 4.25,
+  "strandScores": [
+    {
+      "strand": "000000000000000000000000",
+      "strandName": "Strand 1",
+      "score": 4.5
+    },
+    {
+      "strand": "000000000000000000000000",
+      "strandName": "Strand 2",
+      "score": 4
+    }
+  ],
   "scores": [
     {
       "_id": "000000000000000000000000",
