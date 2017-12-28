@@ -88,5 +88,14 @@
   "lastPublished": "2016-08-10T19:44:07.415Z",
   "viewedByTeacher": "2016-08-10T19:44:07.415Z",
   "observedAt": "2015-02-04T00:19:00.000Z",
-  "created": "2015-03-03T01:19:14.874Z"
+  "created": "2015-03-03T01:19:14.874Z",
+  "eventLog": [{
+    "date": "2015-03-03T01:19:14.874Z",
+    "notes": "This is an event in the event log",
+    "eventtag1": {
+      "_id": "000000000000000000000000",
+      "name": "Example Teacher"
+    },
+    "creator": "000000000000000000000000"
+  }],
 }

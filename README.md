@@ -3,6 +3,9 @@
 ### Recent Updates
 - Added an [example script](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts/NodeJSExample-LargeDataSets.js) for pulling data by month. This is especially useful for large networks who may experience timeout issues when pulling large data sets like observations or scores
 - Added scores endpoint
+- Added convenience fields to assignments 
+- Added additional tagging endpoints
+- Added ability to add, delete, and modify tagging fields 
 - Added additional ID fields on references to users to make integration with other platforms easier. For instance, the "observer" and "teacher" fields on an observation will now include internalId, accountingId, powerSchoolId, and canvasId. If you'd like to populate our database with ID fields from other databases, check out the "Imports" feature in Whetstone or get in touch. We're happy to do an initial import to get those fields populated for existing users. 
 - Draft observations are now available by adding {isPublished: 0} to an observation query.
 
@@ -20,9 +23,12 @@ In order to access the API, you need a Whetstone account at the admin permission
 
 ### Introduction
 
+There are two primary methods of connecting, Oauth 2 and using your API Key. Typically, the API Key is easier for scripting, while Oauth 2 will be required for GUI applications (including Postman, a user-friendly API consumption app). 
+
+#### API Key Method
 The first step to accessing the API is to get your API key.  After logging into Whetstone, visit the settings page (click your name at the top right and choose "My Settings").  You should see a section called "Developer Options" section.  (If you don't, get in touch.  You may not have the correct permissions set up.)  
 
-By default, your API key is hidden.  Click, "Show my API key" to reveal an alphanumeric hash key.  That's your personal key to access Whetstone data.  You can also generate a new API key by clicking "Generate New API Key." That invalidates the old key and creates a new one.  
+By default, your API key is hidden.  Click, "Show my API key" to reveal an alphanumeric hash key.  That's your personal key to access Whetstone data.  You can also generate a new API key by clicking "Generate New API Key." That invalidates the old key and creates a new one. 
 
 Now that you have an API key, you can make an HTTP POST request with your key to our authentication endpoint to get a temporary access token.  We've got a handful of [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) (thank you to Andrew Cox of Renew Schools for the [R example](https://github.com/amcox/whetstone_api_r_demo)) available to get you started but If you're using cURL, you can run this command:
 
@@ -39,6 +45,18 @@ If everything checks out, you should receive a JSON response that looks like thi
          "apikey":"YOUR_API_KEY"
        }
      }
+
+#### Oauth 2 Method (Beta)
+After logging into Whetstone, visit your settings page (click your name at the top right and choose "My Settings"). In the section called "Developer Options," you'll see a setting called "Approved Oauth2 Applications." Click the "Add a New Oauth Client" butt and a wizard will begin. You'll be asked for the applicaton name, a logo (optional), and what scopes you'll want available. For the full API, you can use the API scope. Whetstone can also act as an Oauth 2 SSO solution in other applications. If that's your end-goal, use that scope instead. It's limited to just basic user authentication.
+
+Once you've made your selections, you'll be provided the fields you need to set up Oauth 2: Auth URL, Access Token URL, Client ID, and Client Secret. You can then add them to your application or script.
+
+#####Important Oauth 2 Note: 
+The URL for the Oauth 2 data URLs will look like this:
+
+    https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/oauth2/v2/YOUR_ENDPOINT
+
+The examples below use cURL and the API Key method, which has a different URL structure. So, make sure to add /oauth2 in the URL when making GET requests. 
 
 ### Getting Data from Whetstone - HTTP GET
 Using the key and token, you can make GET requests to pull data.  Let's get the list of schools as an example.  The endpoint for schools data is:
@@ -90,7 +108,7 @@ If you want to access a record where you know the Whetstone _id field, you can m
 
 
 #### Data Available via GET requests
-We currently have the following endpoints available for HTTP GET requests:
+We currently have the following primary endpoints available for HTTP GET requests:
 
 **[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/schools.json)**: /api/v2/schools
 
@@ -107,17 +125,9 @@ We currently have the following endpoints available for HTTP GET requests:
 
 **[Quick Feedback Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/informals.json)**: /api/v2/informals
 
-**[Course Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/courses.json)**: /api/v2/courses
-
-**[Grade Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/grades.json)**: /api/v2/grades
-
-**[Tag Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/tags.json)**: /api/v2/tags
-
 **[Rubric Details](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/rubrics.json)**: /api/v2/rubrics
 
 **[Measurement Details](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/measurements.json)**: /api/v2/measurements
-
-**[Observation Type Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/observationTypes.json)**: /api/v2/observationtypes
 
 **[Measurement Group Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/measurementGroups.json)**: /api/v2/measurementGroups
 
@@ -127,14 +137,96 @@ We currently have the following endpoints available for HTTP GET requests:
 
 **[Meetings](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/meetings.json)**: /api/v2/meetings
 
-**[Meeting Types](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/meetingtypes.json)**: /api/v2/meetingtypes
-
 **[Videos](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/videos.json)**: /api/v2/videos
+
+In addition, the following fields, primarily used for tagging, are available
+
+**[Tags (System-wide)](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/tags.json)**: /api/v2/tags
+
+**[Observation tag 1](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/observationtag1s
+
+**[Observation tag 2](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/observationtag2s
+
+**[Observation tag 3](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/observationtag3s
+
+**[Observation tag 4](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/observationtag4s
+
+**[Observation type](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/observationTypes
+
+**[Observation module](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/observationModules
+
+**[Observation label](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/observationLabels
+
+**[Grade](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/grades
+
+**[Course](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/courses
+
+**[Collaboration type](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/collaborationtypes
+
+**[Measurement group](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/measurementGroups
+
+**[Measurement type](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/measurementTypes
+
+**[Meeting module](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/meetingmodules
+
+**[PLU Event Location](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/plueventlocations
+
+**[PLU Event Type](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/plueventtypes
+
+**[PLU Series](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/pluseriess
+
+**[PLU Content Area](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/plucontentareas
+
+**[Period](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/periods
+
+**[Track](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/tracks
+
+**[Video type](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/videotypes
+
+**[Goal Type](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/goalTypes
+
+**[Meeting tag 1](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/meetingtag1s
+
+**[Meeting tag 2](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/meetingtag2s
+
+**[Meeting tag 3](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/meetingtag3s
+
+**[Meeting tag 4](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/meetingtag4s
+
+**[Action Step Options](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/actionstepopts
+
+**[Goal Options](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/goalopts
+
+**[User tag 1](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/usertag1s
+
+**[User tag 2](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/usertag2s
+
+**[User tag 3](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/usertag3s
+
+**[User tag 4](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/usertag4s
+
+**[User tag 5](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/usertag5s
+
+**[User tag 6](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/usertag6s
+
+**[User tag 7](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/usertag7s
+
+**[User tag 8](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/usertag8s
+
+**[Rubric tag 1](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/rubrictag1s
+
+**[Rubric tag 2](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/rubrictag2s
+
+**[Rubric tag 3](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/rubrictag3s
+
+**[Rubric tag 4](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/rubrictag4s
+
+**[Event Tag 1](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)**: /api/v2/eventtag1s 
 
 Examples of what kind of data you can expect are in the [EXAMPLE-GET-REQUEST-DATA](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/) folder.  
 
 ### Sending Data to Whetstone
-Pulling data is all well and good but what if you want to add or edit data?  That can be done through HTTP POST requests.  Only a subset of our data can be written in the API. If something you want to add isn't available here, get in touch and we'll discuss opening it up.
+Pulling data is all well and good but what if you want to add, edit, or delete records?  That can be done through HTTP POST and DELETE requests.  Only a subset of our data can be written in the API. If something you want to add isn't available here, get in touch and we'll discuss opening it up.
 
 #### Adding Data
 So, let's say you want to add a new user.  The authentication aspect is the same as making a GET request.  (If you haven't tried that part of the tutorial, it's a good idea to do that first before you start creating records willy-nilly.)  You just need to POST JSON data you want to add to the same endpoint.  For instance, to add a user with this data:
@@ -170,11 +262,11 @@ Currently, school and user data can be added/edited via the API.  If you would l
 
 
 ### Deleting Data
-This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't completely delete anything in this way.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to a school or user record's endpoint.  For instance, to archive (i.e., hide a user in the web interface) a school, you would use this cURL command:
+This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't completely delete anything in this way.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to an endpoint.  For instance, to archive (i.e., hide in the web interface) a school, you would use this cURL command:
 
     curl -H "content-type:application/json" -X DELETE -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools/000000000000000000000000
 
-You can also archive a user while editing their data by setting the archivedAt field to a JavaScript-style date format that looks like this: 2015-07-11T20:02:12-05:00 but we recommend doing it with a DELETE request, which automatically sets the timestamp.
+You can also archive while editing data by setting the archivedAt field to a JavaScript-style date format similar to this: 2015-07-11T20:02:12-05:00 but we recommend doing it with a DELETE request, which automatically sets the timestamp.
 
 
 ### Authenticating users
