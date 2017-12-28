@@ -51,7 +51,7 @@ After logging into Whetstone, visit your settings page (click your name at the t
 
 Once you've made your selections, you'll be provided the fields you need to set up Oauth 2: Auth URL, Access Token URL, Client ID, and Client Secret. You can then add them to your application or script. (For instance, in [Postman](https://www.getpostman.com), from the Builder tab, you would select "Oauth 2" for the type, and then click "Get New Access Token" to enter your credentials. Postman will then be authorized to make API requests.)
 
-#####Important Oauth 2 Note: 
+##### Important Oauth 2 Note: 
 The URL for the Oauth 2 data URLs will look like this:
 
     https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/oauth2/v2/YOUR_ENDPOINT
