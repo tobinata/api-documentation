@@ -23,7 +23,7 @@ In order to access the API, you need a Whetstone account at the admin permission
 
 ### Introduction
 
-There are two primary methods of connecting, Oauth 2 and using your API Key. Typically, the API Key is easier for scripting, while Oauth 2 will be required for GUI applications (including Postman, a user-friendly API consumption app). 
+There are two methods of connecting, Oauth 2 and using your API Key. Typically, the API Key is easier for scripting, while Oauth 2 will be required for GUI applications (including [Postman](https://www.getpostman.com), a user-friendly API testing app). 
 
 #### API Key Method
 The first step to accessing the API is to get your API key.  After logging into Whetstone, visit the settings page (click your name at the top right and choose "My Settings").  You should see a section called "Developer Options" section.  (If you don't, get in touch.  You may not have the correct permissions set up.)  
@@ -47,9 +47,9 @@ If everything checks out, you should receive a JSON response that looks like thi
      }
 
 #### Oauth 2 Method (Beta)
-After logging into Whetstone, visit your settings page (click your name at the top right and choose "My Settings"). In the section called "Developer Options," you'll see a setting called "Approved Oauth2 Applications." Click the "Add a New Oauth Client" butt and a wizard will begin. You'll be asked for the applicaton name, a logo (optional), and what scopes you'll want available. For the full API, you can use the API scope. Whetstone can also act as an Oauth 2 SSO solution in other applications. If that's your end-goal, use that scope instead. It's limited to just basic user authentication.
+After logging into Whetstone, visit your settings page (click your name at the top right and choose "My Settings"). In the section called "Developer Options," you'll see a setting called "Approved Oauth2 Applications." Click the "Add a New Oauth Client" button and you'll be asked for the applicaton name you wish to authorize, an optional logo, and what scopes you'll want available. For the full API, you can use the api:all scope. (Whetstone can also act as an Oauth 2 SSO solution in other applications. If that's your end-goal, use that scope instead, as it's limited to basic user authentication.)
 
-Once you've made your selections, you'll be provided the fields you need to set up Oauth 2: Auth URL, Access Token URL, Client ID, and Client Secret. You can then add them to your application or script.
+Once you've made your selections, you'll be provided the fields you need to set up Oauth 2: Auth URL, Access Token URL, Client ID, and Client Secret. You can then add them to your application or script. (For instance, in [Postman](https://www.getpostman.com), from the Builder tab, you would select "Oauth 2" for the type, and then click "Get New Access Token" to enter your credentials. Postman will then be authorized to make API requests.)
 
 #####Important Oauth 2 Note: 
 The URL for the Oauth 2 data URLs will look like this:
