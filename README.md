@@ -1,6 +1,7 @@
 # Whetstone API
 
 ### Recent Updates
+- Added support for adding multiple items in an array with one call
 - Added an [example script](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts/NodeJSExample-LargeDataSets.js) for pulling data by month. This is especially useful for large networks who may experience timeout issues when pulling large data sets like observations or scores
 - Added scores endpoint
 - Added convenience fields to assignments 
@@ -241,17 +242,32 @@ you can make this cURL command:
   
 You'll probably want to add additional fields to your users when adding them but name and email are required.  
 
+To add multiple users (or anything else), you should format it like this:
+
+    {
+    	users: [{
+      		"name":"Some Name",
+      		"email":"some.name@domain.org"
+    	},
+    	{
+      		"name":"Another Person",
+      		"email":"another.person@domain.org"
+    	}]
+    }
+
+The name of the array should be the endpoint (e.g., replace "users" with "schools" if you're adding schools)
+
 #### Editing Data
 
-To edit a user already in the database, we use the same authentication process as above but make an HTTP POST request using the _id field. For a school, that would look like: 
-  
+To edit a record already in the database, we use the same authentication process as above but make an HTTP POST request using the _id field. For a school, that would look like: 
+
     https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools/000000000000000000000000
   
 So, to update a school's name, you would run the following cURL command: 
 
     curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools/000000000000000000000000
 
-Currently, school and user data can be added/edited via the API.  If you would like to add more, contact your friendly Whetstone Education CTO (Cody) and he'll open that up.
+Currently, school and user data, as well as all the types and tags (detailed in the GET data section) can be added/edited via the API.  Forms, rubrics, and records created within Whetstone like observations, quick feedback, assignments, etc. are not currently things that can be added via the API but if that is something you're trying to accomplish -- for instance, importing things from another system -- contact your friendly Whetstone Customer Success representative (or the CTO, Cody) and we'll work with you to figure out the best way to transfer your data.
 
 #### Examples of data that can be sent via POST requests
 **[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/school.json)**: /api/v2/schools
@@ -260,24 +276,25 @@ Currently, school and user data can be added/edited via the API.  If you would l
 
 **[User Data (SCIM compliant)](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/userscim.json)**: /api/v2/usersscim
 
+**[Types and Tags (listed above)](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/generic.json)** 
+
 
 ### Deleting Data
 This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't completely delete anything in this way.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to an endpoint.  For instance, to archive (i.e., hide in the web interface) a school, you would use this cURL command:
 
     curl -H "content-type:application/json" -X DELETE -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools/000000000000000000000000
 
-You can also archive while editing data by setting the archivedAt field to a JavaScript-style date format similar to this: 2015-07-11T20:02:12-05:00 but we recommend doing it with a DELETE request, which automatically sets the timestamp.
-
+You can also archive while editing data by setting the archivedAt field to a JavaScript-style date format similar to this: 2015-07-11T20:02:12-05:00 but we recommend doing it with a DELETE request, which automatically sets the timestamp. Another option for users is to make a POST update and set ````{inactive: true}````, which is more appropriate for users going on temporary leave but whose data should still appear in reports and on dashboards.
 
 ### Authenticating users
 If you work with other vendors whose login system you trust, you can have them create links to log users into Whetstone directly from their authenticated area. Each user has a 24 bit "localkey" field that can be used in lieu of a password.  Keys expire at irregular intervals and should never be cached or bookmarked. In order for a user to login using their localkey, the vendor should use the API to retreive the user's record and send the user to a URL like this: 
 
     https://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/localkey?apikey=USERS_LOCAL_KEY&_id=USERS_WHETSTONE_ID
 
-Bypassing normal authentication routes obviously has security implications. Whetstone has no control over third-party login systems and allowing another vendor to log people into Whetstone opens another path for data to be compromised. If you're looking for a Single-Sign-On solution, we also support OAUTH 2 and SAML. Those methods are often preferable to creating custom authentication methods. 
+Bypassing normal authentication routes obviously has security implications. Whetstone has no control over third-party login systems and allowing another vendor to log people into Whetstone opens another path for data to be compromised. If you're looking for a Single-Sign-On solution, we also support OAUTH 2 and, where possible, SAML solutions. Those methods are almost always preferable to creating custom authentication methods. We can also act as an SSO IDP using Oauth 2. 
 
 ### Examples and Help
 
-We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a Node.js script (cross-platform), a Python Script (cross-platform), a Go script (cross-platform), a PowerShell script (Windows), and a bash script (OS X, Linux, Unix, and anywhere else bash and cURL can be found). 
+We also have [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) to get you started. We have provided a Node.js script (cross-platform), a Python Script (cross-platform), a Go script (cross-platform), a PowerShell script (Windows), an R example for statisticians, and a bash script (macOS, Linux, Unix, and anywhere else bash and cURL can be found (like Windows 10 with the Substrate for Linux, Docker, etc.)). 
 
-If you have an example script in another language, please share it with us, either via email or by making a pull request and adding it (make sure to delete your API key!) If you develop any useful tools using this API, please consider open-sourcing it so other schools can benefit. 
+If you have an example script in another language, please share it with us, either via email or by making a pull request and adding it (make sure to delete your API key!) If you develop any useful tools using this API, please consider open-sourcing it so other schools can benefit. Whetstone is a strong supporter of open source software and we're happy to contribute whenever possible. 
