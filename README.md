@@ -267,7 +267,7 @@ So, to update a school's name, you would run the following cURL command:
 
     curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools/000000000000000000000000
 
-Currently, school and user data, as well as all the types and tags (detailed in the GET data section) can be added/edited via the API.  Forms, rubrics, and records created within Whetstone like observations, quick feedback, assignments, etc. are not currently things that can be added via the API but if that is something you're trying to accomplish -- for instance, importing things from another system -- contact your friendly Whetstone Customer Success representative (or the CTO, Cody) and we'll work with you to figure out the best way to transfer your data.
+Currently, school and user data, as well as all the types and tags (detailed in the GET data section) can be added/edited via the API.  Forms, rubrics, and records created within Whetstone like observations, quick feedback, assignments, etc. are not currently things that can be added via the API but if that is something you're trying to accomplish -- for instance, importing things from another system -- contact your friendly Whetstone Customer Success representative (through the Support and Feedback button on your Whetstone site if you haven't met them) and we'll work with you to figure out the best way to transfer your data.
 
 #### Examples of data that can be sent via POST requests
 **[School Data](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-POST-REQUEST-DATA/school.json)**: /api/v2/schools
