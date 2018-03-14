@@ -44,7 +44,10 @@ if token:
   print(json.dumps(payload))
   # make request
   res = requests.post(endpointurl, data=json.dumps(payload), headers=headers)
-  print(res.text)
+
   # decode response
   response = json.loads(res.text);
+
+  # pretty print response
+  print(json.dumps(response, indent=2, sort_keys=True))
 
