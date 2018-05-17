@@ -24,7 +24,9 @@ In order to access the API, you need a Whetstone account at the admin permission
 
 ### Introduction
 
-The easiest way to get started with the Whetstone API is to use [Postman](https://www.getpostman.com) to explore all of the REST endpoints available. Opening the Postman collection will default to using credentials for the demo environment so you can explore our API without having an official Whetstone account. Once you have a Whetstone account you can change your authorization keys to access your Whetstone data.
+The easiest way to get started with the Whetstone API is to use [Postman](https://www.getpostman.com) to explore all of the REST endpoints available. 
+After opening the Postman collection, select the demo environment and open the Whetstone collection so you can explore our API without having an official Whetstone account. 
+Once you have a Whetstone account you can change your authorization keys in the environment settings to access your Whetstone data.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/4ec8699c843a794d8d9b#?env%5Bdemo%5D=W3sia2V5IjoieC1hY2Nlc3MtdG9rZW4iLCJ2YWx1ZSI6ImV5SjBlWEFpT2lKS1YxUWlMQ0poYkdjaU9pSklVekkxTmlKOS5leUpsZUhBaU9qRTFNamN4TnpneE9Ua3pOREY5LlBWWW9oNktCa0d5TThvbUVKSHNQbmlOQ2J4QklUdWluLWJ2OWF2dC1YNFUiLCJkZXNjcmlwdGlvbiI6IiIsInR5cGUiOiJ0ZXh0IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJ4LWtleSIsInZhbHVlIjoiOGEwMWQxNDlkMzdjOTI0NzY4OTMwZGVjMzM0MjFkNGUxMTg0Y2FhZWQ0Y2YwNjE3IiwiZGVzY3JpcHRpb24iOiIiLCJ0eXBlIjoidGV4dCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY29udGVudC10eXBlIiwidmFsdWUiOiJhcHBsaWNhdGlvbi9qc29uIiwiZGVzY3JpcHRpb24iOiIiLCJ0eXBlIjoidGV4dCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoidXJsIiwidmFsdWUiOiJodHRwczovL2RlbW8ud2hldHN0b25lZWR1Y2F0aW9uLmNvbSIsImRlc2NyaXB0aW9uIjoiIiwidHlwZSI6InRleHQiLCJlbmFibGVkIjp0cnVlfV0=)
 
@@ -35,7 +37,13 @@ The first step to accessing the API is to get your API key.  After logging into 
 
 By default, your API key is hidden.  Click, "Show my API key" to reveal an alphanumeric hash key.  That's your personal key to access Whetstone data.  You can also generate a new API key by clicking "Generate New API Key." That invalidates the old key and creates a new one. 
 
-Now that you have an API key, you can make an HTTP POST request with your key to our authentication endpoint to get a temporary access token.  We've got a handful of [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) (thank you to Andrew Cox of Renew Schools for the [R example](https://github.com/amcox/whetstone_api_r_demo)) available to get you started but If you're using cURL, you can run this command:
+Now that you have an API key, you can make an HTTP POST request with your key to our authentication endpoint to get a temporary access token.  
+
+If you are using [Postman](https://www.getpostman.com), you can add the API key to your environment settings under 'x-key' and use the 'get token' call to retrieve your access token. Once you have an access token you can add that to the environment settings under 'x-access-token'. Your environment should look like this once you are done:
+
+![alt text](https://storage.googleapis.com/whetstone-images/postman-environment-settings.png "Postman Environment Settings")
+
+If you prefer not to use [Postman](https://www.getpostman.com) we have a handful of [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) (thank you to Andrew Cox of Renew Schools for the [R example](https://github.com/amcox/whetstone_api_r_demo)) available to get you started but If you're using cURL, you can run this command:
 
     curl -s --data "apikey=YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/api
 
