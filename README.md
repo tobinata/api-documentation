@@ -13,7 +13,7 @@
 ### Changelog from v1
 
 - Updated endpoint to /api/v2/endpoint
-- Added 4 new endpoints (grades, meetings, meetingtypes, videos)
+- Added 3 new endpoints (grades, meetings, videos)
 - Grades are now a customizable field and the API has been adjusted to reflect that. Some older data may have both grade and gradeLevel. In those instances, gradeLevel is the new version. The grade field will be removed in a future update.  
 - Where possible, sub-fields have been populated.  For instance, if an observation is tagged, rather than returning an array of tag _id fields, the API now returns an array of tag objects.  This is likely a breaking change from v1 of the API for some scripts. It should allow for simplification and fewer joins on your end. (Version 1 of the API is deprecated but will remain available for the forseeable future.)
 - Nearly all endpoints return additional data elements. 
@@ -24,7 +24,11 @@ In order to access the API, you need a Whetstone account at the admin permission
 
 ### Introduction
 
-There are two methods of connecting, Oauth 2 and using your API Key. Typically, the API Key is easier for scripting, while Oauth 2 will be required for GUI applications (including [Postman](https://www.getpostman.com), a user-friendly API testing app). 
+The easiest way to get started with the Whetstone API is to use [Postman](https://www.getpostman.com) to explore all of the REST endpoints available. Opening the Postman collection will default to using credentials for the demo environment so you can explore our API without having an official Whetstone account. Once you have a Whetstone account you can change your authorization keys to access your Whetstone data.
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/4ec8699c843a794d8d9b#?env%5Bdemo%5D=W3sia2V5IjoieC1hY2Nlc3MtdG9rZW4iLCJ2YWx1ZSI6ImV5SjBlWEFpT2lKS1YxUWlMQ0poYkdjaU9pSklVekkxTmlKOS5leUpsZUhBaU9qRTFNamN4TnpneE9Ua3pOREY5LlBWWW9oNktCa0d5TThvbUVKSHNQbmlOQ2J4QklUdWluLWJ2OWF2dC1YNFUiLCJkZXNjcmlwdGlvbiI6IiIsInR5cGUiOiJ0ZXh0IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJ4LWtleSIsInZhbHVlIjoiOGEwMWQxNDlkMzdjOTI0NzY4OTMwZGVjMzM0MjFkNGUxMTg0Y2FhZWQ0Y2YwNjE3IiwiZGVzY3JpcHRpb24iOiIiLCJ0eXBlIjoidGV4dCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY29udGVudC10eXBlIiwidmFsdWUiOiJhcHBsaWNhdGlvbi9qc29uIiwiZGVzY3JpcHRpb24iOiIiLCJ0eXBlIjoidGV4dCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoidXJsIiwidmFsdWUiOiJodHRwczovL2RlbW8ud2hldHN0b25lZWR1Y2F0aW9uLmNvbSIsImRlc2NyaXB0aW9uIjoiIiwidHlwZSI6InRleHQiLCJlbmFibGVkIjp0cnVlfV0=)
+
+There are two methods of authorizing against the Whetstone API, Oauth 2 and using your API Key. Typically, the API Key is easier for scripting. 
 
 #### API Key Method
 The first step to accessing the API is to get your API key.  After logging into Whetstone, visit the settings page (click your name at the top right and choose "My Settings").  You should see a section called "Developer Options" section.  (If you don't, get in touch.  You may not have the correct permissions set up.)  
@@ -133,8 +137,6 @@ We currently have the following primary endpoints available for HTTP GET request
 **[Measurement Group Names](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/measurementGroups.json)**: /api/v2/measurementGroups
 
 **[File Uploads](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/files.json)**: /api/v2/files
-
-**[Meetings](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/meetings.json)**: /api/v2/meetings
 
 **[Meetings](https://github.com/WhetstoneEducation/API/blob/master/EXAMPLE-GET-REQUEST-DATA/meetings.json)**: /api/v2/meetings
 
