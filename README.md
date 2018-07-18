@@ -112,6 +112,26 @@ And in cURL, you'd request it like this:
 
     curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/observations?observedAt%5B%24gte%5D=2015-04-01T05%3A00%3A00.000Z&observedAt%5B%24lte%5D=2016-06-13T15%3A18%3A04.272Z
 
+Additionally, The following 3 fields are queryable with date ranges for all of our available endpoints.
+
+  * created - The date the entity was created in our database
+  * lastModified - The date the entity was last saved in our database
+  * archivedAt - The date the entity was archived
+
+If you want to query for any of these fields you specify the dates as follows:
+
+Get all observations that were archived after Jan 1st 2018
+
+    {{url}}/api/v2/observations?archivedAt=1514764800
+
+Get all observations that were archived between Jan 1st 2018 and July 18th 2018
+
+    {{url}}/api/v2/observations?archivedAt=1514764800,1531872000
+
+You’ll notice the dates are specified using a unix timestamp. You can find more information on unix timestamps [here](https://www.unixtimestamp.com/). The reason we use this format is because it is universal across any type of system. Note that you can still query all 3 of the previous fields using the $gte and $lte syntax:
+
+    {{url}}/api/v2/observations?lastModified%5B%24gte%5D=2015-04-01T05%3A00%3A00.000Z&observedAt%5B%24lte%5D=2016-06-13T15%3A18%3A04.272Z
+
 Our API seeks to mimic the MongoDB query language, which is JavaScript based. To learn more, visit the [MongoDB query documentation](https://docs.mongodb.com/manual/reference/operator/query/).
 
 ####Single Records by ID
