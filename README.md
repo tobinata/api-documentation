@@ -1,6 +1,7 @@
 # Whetstone API
 
 ### Recent Updates
+- Changed references to YOUR_INSTANCE to reflect new process of using app.whetstoneeducation.com as the URL
 - Added support for adding multiple items in an array with one call
 - Added an [example script](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts/NodeJSExample-LargeDataSets.js) for pulling data by month. This is especially useful for large networks who may experience timeout issues when pulling large data sets like observations or scores
 - Added scores endpoint
@@ -45,7 +46,7 @@ If you are using [Postman](https://www.getpostman.com), you can add the API key 
 
 If you prefer not to use [Postman](https://www.getpostman.com) we have a handful of [example scripts](https://github.com/WhetstoneEducation/API/blob/master/ExampleScripts) (thank you to Andrew Cox of Renew Schools for the [R example](https://github.com/amcox/whetstone_api_r_demo)) available to get you started but If you're using cURL, you can run this command:
 
-    curl -s --data "apikey=YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/api
+    curl -s --data "apikey=YOUR_API_KEY" https://app.whetstoneeducation.com/auth/api
 
 If everything checks out, you should receive a JSON response that looks like this:
 
@@ -67,18 +68,18 @@ Once you've made your selections, you'll be provided the fields you need to set 
 ##### Important Oauth 2 Note:
 The URL for the Oauth 2 data URLs will look like this:
 
-    https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/oauth2/v2/YOUR_ENDPOINT
+    https://app.whetstoneeducation.com/api/oauth2/v2/YOUR_ENDPOINT
 
 The examples below use cURL and the API Key method, which has a different URL structure. So, make sure to add /oauth2 in the URL when making GET requests.
 
 ### Getting Data from Whetstone - HTTP GET
 Using the key and token, you can make GET requests to pull data.  Let's get the list of schools as an example.  The endpoint for schools data is:
 
-    https://YOUR_INSTANCE.whetstoneeducation.com/api/v2/schools
+    https://app.whetstoneeducation.com/api/v2/schools
 
 To access data, you need to make an HTTP GET request with the *access-token* and *key* included in the headers. Using cURL, it would look like this.
 
-    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools
+    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://app.whetstoneeducation.com/api/v2/schools
 
 If everything checks out, you'll get back all the schools data in Whetstone's database in JSON format.
 
@@ -87,13 +88,13 @@ When pulling data, there is a 30s limit. All requests taking longer than that wi
 #### Querying Data
 If you want to query the database, you can append a query string to your endpoint. In cURL, it would look like this:
 
-    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools?name=Bel+Air+Academy
+    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://app.whetstoneeducation.com/api/v2/schools?name=Bel+Air+Academy
 
 In that example, you would request the record where the name of the school is equal to Bel Air Academy.  You can use any data field in the query string.
 
 If you prefer XML over JSON, you can add a format: xml to the headers like this:
 
-    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" -H "format:xml" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools?name=Bel+Air+Academy
+    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" -H "format:xml" https://app.whetstoneeducation.com/api/v2/schools?name=Bel+Air+Academy
 
 If you want to query by date range, you can use the $gte or $lte (greater than or equal to) operators that, in JavaScript, would look like this:
 
@@ -110,7 +111,7 @@ The equivalent query string encoded would be:
 
 And in cURL, you'd request it like this:
 
-    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/observations?observedAt%5B%24gte%5D=2015-04-01T05%3A00%3A00.000Z&observedAt%5B%24lte%5D=2016-06-13T15%3A18%3A04.272Z
+    curl -H "content-type:application/json" -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY"  https://app.whetstoneeducation.com/api/v2/observations?observedAt%5B%24gte%5D=2015-04-01T05%3A00%3A00.000Z&observedAt%5B%24lte%5D=2016-06-13T15%3A18%3A04.272Z
 
 Additionally, The following 3 fields are queryable with date ranges for all of our available endpoints.
 
@@ -137,7 +138,7 @@ Our API seeks to mimic the MongoDB query language, which is JavaScript based. To
 ####Single Records by ID
 If you want to access a record where you know the Whetstone _id field, you can make an HTTP GET request with the _id added to the endpoint.  For instance, to get a single school, you can use the endpoint:
 
-    https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools/000000000000000000000000
+    https://app.whetstoneeducation.com/api/v2/schools/000000000000000000000000
 
 
 #### Data Available via GET requests
@@ -268,7 +269,7 @@ So, let's say you want to add a new user.  The authentication aspect is the same
 
 you can make this cURL command:
 
-    curl -H "content-type:application/json" -X POST --data '{"name":"Fake User","email":"fakeuser@email.com"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/users
+    curl -H "content-type:application/json" -X POST --data '{"name":"Fake User","email":"fakeuser@email.com"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://app.whetstoneeducation.com/api/v2/users
 
 You'll probably want to add additional fields to your users when adding them but name and email are required.  
 
@@ -291,11 +292,11 @@ The name of the array should be the endpoint (e.g., replace "users" with "school
 
 To edit a record already in the database, we use the same authentication process as above but make an HTTP POST request using the _id field. For a school, that would look like:
 
-    https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools/000000000000000000000000
+    https://app.whetstoneeducation.com/api/v2/schools/000000000000000000000000
 
 So, to update a school's name, you would run the following cURL command:
 
-    curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools/000000000000000000000000
+    curl -H "content-type:application/json" -X POST --data '{"name":"New School Name"}' -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://app.whetstoneeducation.com/api/v2/schools/000000000000000000000000
 
 Currently, school and user data, as well as all the types and tags (detailed in the GET data section) can be added/edited via the API.  Forms, rubrics, and records created within Whetstone like observations, quick feedback, assignments, etc. are not currently things that can be added via the API but if that is something you're trying to accomplish -- for instance, importing things from another system -- contact your friendly Whetstone Customer Success representative (through the Support and Feedback button on your Whetstone site if you haven't met them) and we'll work with you to figure out the best way to transfer your data.
 
@@ -312,14 +313,14 @@ Currently, school and user data, as well as all the types and tags (detailed in 
 ### Deleting Data
 This is obviously a danger zone.  You probably shouldn't delete anything and, in fact, you can't completely delete anything in this way.  You can, however, set the archivedAt date for records using the API.  The easiest way to do that is to send an HTTP DELETE request to an endpoint.  For instance, to archive (i.e., hide in the web interface) a school, you would use this cURL command:
 
-    curl -H "content-type:application/json" -X DELETE -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://YOUR_INSTANCE_NAME.whetstoneeducation.com/api/v2/schools/000000000000000000000000
+    curl -H "content-type:application/json" -X DELETE -H "x-access-token:YOUR_ACCESS_TOKEN" -H "x-key:YOUR_API_KEY" https://app.whetstoneeducation.com/api/v2/schools/000000000000000000000000
 
 You can also archive while editing data by setting the archivedAt field to a JavaScript-style date format similar to this: 2015-07-11T20:02:12-05:00 but we recommend doing it with a DELETE request, which automatically sets the timestamp. Another option for users is to make a POST update and set ````{inactive: true}````, which is more appropriate for users going on temporary leave but whose data should still appear in reports and on dashboards.
 
 ### Authenticating users
 If you work with other vendors whose login system you trust, you can have them create links to log users into Whetstone directly from their authenticated area. Each user has a 24 bit "localkey" field that can be used in lieu of a password.  Keys expire at irregular intervals and should never be cached or bookmarked. In order for a user to login using their localkey, the vendor should use the API to retreive the user's record and send the user to a URL like this:
 
-    https://YOUR_INSTANCE_NAME.whetstoneeducation.com/auth/localkey?apikey=USERS_LOCAL_KEY&_id=USERS_WHETSTONE_ID
+    https://app.whetstoneeducation.com/auth/localkey?apikey=USERS_LOCAL_KEY&_id=USERS_WHETSTONE_ID
 
 Bypassing normal authentication routes obviously has security implications. Whetstone has no control over third-party login systems and allowing another vendor to log people into Whetstone opens another path for data to be compromised. If you're looking for a Single-Sign-On solution, we also support OAUTH 2 and, where possible, SAML solutions. Those methods are almost always preferable to creating custom authentication methods. We can also act as an SSO IDP using Oauth 2.
 
